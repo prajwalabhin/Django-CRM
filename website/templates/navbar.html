@@ -1,0 +1,86 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="mainNavbar">
+  <div class="container-fluid">
+      <!-- Brand name -->
+      <a class="navbar-brand" href="{% url 'home' %}" style="font-weight: bold;">Django CRM</a>
+      
+      <!-- Toggler for mobile view -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Navbar links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'add_record' %}" style="font-size: 16px;">Add Record</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}" style="font-size: 16px;">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}" style="font-size: 16px; color: #ff4d4d;">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}" style="font-size: 16px;">Register</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'home' %}" style="font-size: 16px;">Login</a>
+              </li>
+              {% endif %}
+          </ul>
+
+          <!-- Light/Dark Mode Toggle -->
+          <div class="form-check form-switch" style="margin-left: auto;">
+              <input class="form-check-input" type="checkbox" id="themeToggle">
+              <label class="form-check-label text-light" for="themeToggle" id="themeLabel">Dark Mode</label>
+          </div>
+      </div>
+  </div>
+</nav>
+
+<!-- Marquee Text -->
+<!-- <div style="background-color: #343a40; color: white; text-align: center; padding: 10px; font-size: 18px; font-weight: bold; margin-top: 5px;">
+  <marquee behavior="scroll" direction="left">
+      Welcome to Django CRM - Simplify your customer relationship management with ease!
+  </marquee>
+</div> -->
+
+<script>
+  // JavaScript for Light/Dark Mode Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const themeLabel = document.getElementById('themeLabel');
+  const navbar = document.getElementById('mainNavbar');
+
+  // Check saved theme preference in localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+      document.body.style.backgroundColor = '#f8f9fa';
+      document.body.style.color = '#212529';
+      navbar.classList.remove('navbar-dark', 'bg-dark');
+      navbar.classList.add('navbar-light', 'bg-light');
+      themeToggle.checked = true;
+      themeLabel.textContent = 'Light Mode';
+  }
+
+  themeToggle.addEventListener('change', () => {
+      if (themeToggle.checked) {
+          // Light Mode
+          document.body.style.backgroundColor = '#f8f9fa';
+          document.body.style.color = '#212529';
+          navbar.classList.remove('navbar-dark', 'bg-dark');
+          navbar.classList.add('navbar-light', 'bg-light');
+          themeLabel.textContent = 'Light Mode';
+          localStorage.setItem('theme', 'light');
+      } else {
+          // Dark Mode
+          document.body.style.backgroundColor = '#212529';
+          document.body.style.color = '#f8f9fa';
+          navbar.classList.remove('navbar-light', 'bg-light');
+          navbar.classList.add('navbar-dark', 'bg-dark');
+          themeLabel.textContent = 'Dark Mode';
+          localStorage.setItem('theme', 'dark');
+      }
+  });
+</script>

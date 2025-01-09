@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .form-container {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        border-radius: 10px; /* Rounded corners */
+        padding: 20px;
+        background-color: #f8f9fa; /* Light background for visibility */
+        margin-top: 20px;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+
+    .marquee-container {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .marquee-container marquee {
+        font-size: 16px;
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+
+<!-- Marquee -->
+<div class="marquee-container">
+    <marquee behavior="scroll" direction="left">
+        Please fill in the form below to add a new record to the database.
+    </marquee>
+</div>
+
+<!-- Add Record Form -->
+<div class="col-md-6 offset-md-3 form-container">
+    <h1 class="text-center" style="color: #007bff;">Add New Customer Record</h1>
+    <p class="text-muted text-center">
+        Use this form to add new customer details to the system. Ensure that all fields are filled out accurately before submission.
+    </p>
+    <br />
+
+    <!-- Form -->
+    <form method="POST" action="{% url 'add_record' %}">
+        {% csrf_token %}
+
+        <!-- Form Fields -->
+        {{ form.as_p }}
+
+        <br />
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-secondary btn-block">Add Record</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-block">Back to Home</a>
+    </form>
+</div>
+
+<!-- Instructions Section -->
+<div class="alert alert-info mt-4" role="alert">
+    <strong>Important Instructions:</strong>
+    <ul>
+        <li>Double-check the entered information before submitting.</li>
+        <li>Ensure that all mandatory fields are filled out.</li>
+        <li>Enter the customer's full name, email, phone, and address accurately.</li>
+        <li>All fields marked as required must be filled to submit the form.</li>
+        <li>Ensure the email format is valid, and phone numbers include the correct area code.</li>
+    </ul>
+</div>
+
+{% endblock %}
