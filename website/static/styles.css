@@ -1,0 +1,12 @@
+@media (max-width: 768px) {
+    /* Mobile screen adjustments */
+    .form-container {
+        padding: 20px;
+    }
+
+    /* Ensure the content fills the screen properly */
+    .col-md-6.offset-md-3 {
+        width: 100%;
+        margin: 0;
+    }
+}
