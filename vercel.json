@@ -18,6 +18,18 @@
     ],
     "env": {
         "DJANGO_SETTINGS_MODULE": "dcrm.settings",
-        "PYTHONUNBUFFERED": "1"
+        "PYTHONUNBUFFERED": "1",
+        "DB_NAME": "@db_name",   
+        "DB_USER": "@db_user", 
+        "DB_PASSWORD": "@db_password",   
+        "DB_HOST": "@db_host",   
+        "DB_PORT": "@db_port",   
+        "DJANGO_SECRET_KEY": "@django_secret_key"  
+    },
+    "files": {
+        "static": {
+            "src": "website/static/**/*",
+            "dest": "/static"
+        }
     }
 }

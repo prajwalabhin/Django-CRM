@@ -8,15 +8,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%5ti0&=7l3quaw%$un7ypafv@a*kby7y40^co@b%sy132#s!@*'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-%5ti0&=7l3quaw%$un7ypafv@a*kby7y40^co@b%sy132#s!@*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vercel.app']
+# Dynamic allowed hosts (for deployment on Vercel)
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vercel.app', os.getenv('VERCEL_URL', '')]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -57,23 +57,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dcrm.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cricbuzz',
-        'USER': 'root',
-        'PASSWORD': 'user@1729',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME', 'cricbuzz'),
+        'USER': os.getenv('DB_USER', 'root'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'user@1729'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '3306'),
     }
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -90,26 +86,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = 'static/'
 
-# Add these lines for static files
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'website', 'static')]  # If you plan to store static files in a folder
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory where collectstatic will collect static files
+# Add these lines for static files handling on Vercel
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'website', 'static')]  # Static files location
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collect static files here
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
