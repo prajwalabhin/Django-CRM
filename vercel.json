@@ -19,12 +19,11 @@
     "env": {
         "DJANGO_SETTINGS_MODULE": "dcrm.settings",
         "PYTHONUNBUFFERED": "1",
-        "DB_NAME": "@db_name",   
-        "DB_USER": "@db_user", 
-        "DB_PASSWORD": "@db_password",   
-        "DB_HOST": "@db_host",   
-        "DB_PORT": "@db_port",   
-        "DJANGO_SECRET_KEY": "@django_secret_key"  
+        "MYSQL_DATABASE_HOST": "your-database-host",
+        "MYSQL_DATABASE_NAME": "your-database-name",
+        "MYSQL_DATABASE_USER": "your-database-user",
+        "MYSQL_DATABASE_PASSWORD": "your-database-password",
+        "DJANGO_SECRET_KEY": "your-django-secret-key"
     },
     "files": {
         "static": {
