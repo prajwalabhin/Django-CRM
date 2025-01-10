@@ -1,28 +1,27 @@
 {
     "version": 2,
     "builds": [
-        {
-            "src": "dcrm/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "15mb",
-                "runtime": "python3.9"
-            }
+      {
+        "src": "dcrm/wsgi.py",
+        "use": "@vercel/python",
+        "config": {"maxLambdaSize": "15mb", "runtime": "python3.x"}
+      },
+      {
+        "src": "build_files.sh",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "staticfiles"
         }
+      }
     ],
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "dcrm/wsgi.py"
-        }
-    ],
-    "env": {
-        "DJANGO_SETTINGS_MODULE": "dcrm.settings",
-        "PYTHONUNBUFFERED": "1",
-        "MYSQL_DATABASE_HOST": "your-database-host",
-        "MYSQL_DATABASE_NAME": "your-database-name",
-        "MYSQL_DATABASE_USER": "your-database-user",
-        "MYSQL_DATABASE_PASSWORD": "your-database-password",
-        "DJANGO_SECRET_KEY": "your-django-secret-key"
-    }
-}
+      {
+        "src": "/(.*)",
+        "dest": "dcrm/wsgi.py"
+      },
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      }
+    ]
+  }

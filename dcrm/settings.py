@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,21 +15,23 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-%5ti0&=7l3quaw%$un7
 DEBUG = False
 
 # Dynamic allowed hosts (for deployment on Vercel)
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'vercel.app', os.getenv('VERCEL_URL', '')]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', ".now.sh", 'vercel.app', os.getenv('VERCEL_URL', '')]
 
 # Application definition
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'website',
+    'website',  # Your app
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,17 +60,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dcrm.wsgi.application'
 
-# Database configuration
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': os.getenv('DB_NAME', 'cricbuzz'),
-#         'USER': os.getenv('DB_USER', 'root'),
-#         'PASSWORD': os.getenv('DB_PASSWORD', 'user@1729'),
-#         'HOST': os.getenv('DB_HOST', 'localhost'),
-#         'PORT': os.getenv('DB_PORT', '3306'),
-#     }
-# }
+# Database configuration (use environment variables for sensitive information)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DB_NAME', 'your-database-name'),
+        'USER': os.getenv('DB_USER', 'your-database-user'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'your-database-password'),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '3306'),
+    }
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -96,8 +99,11 @@ STATIC_URL = 'static/'
 
 # Add these lines for static files handling on Vercel
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'website', 'static')]  # Static files location
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collect static files here
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles", "static")  # Collect static files here
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Optional: Set up WhiteNoise to serve static files on Vercel
+WHITENOISE_AUTOREFRESH = True  # Automatically refresh static files on code changes
