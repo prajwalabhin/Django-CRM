@@ -24,15 +24,5 @@
         "MYSQL_DATABASE_USER": "your-database-user",
         "MYSQL_DATABASE_PASSWORD": "your-database-password",
         "DJANGO_SECRET_KEY": "your-django-secret-key"
-    },
-    "files": {
-        "static": {
-            "src": "website/static/**/*",
-            "dest": "/static"
-        }
     }
 }
-
-
-
-
