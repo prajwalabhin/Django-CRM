@@ -32,7 +32,7 @@ dcrm/                # Root directory
 ## Installation and Setup
 1. **Clone the Repository**
    ```sh
-   git clone https://github.com/prajwalabhin/Django-CRMhttps://github.com/prajwalabhin/Django-CRM
+   git clone https://github.com/prajwalabhin/Django-CRM
    cd dcrm
    ```
 
@@ -72,3 +72,7 @@ dcrm/                # Root directory
 - **Admin Panel**: Access via `/admin` to manage users and customer data.
 - **User Registration**: New users can register via the registration form.
 - **Login & Logout**: Users can securely log in and manage their data.
+  ```
+  [Watch the video](./assets/Django CRM.mp4)
+  [Watch the video](./assets/Site administration _ Django site admin.mp4.)
+  
