@@ -72,7 +72,8 @@ dcrm/                # Root directory
 - **Admin Panel**: Access via `/admin` to manage users and customer data.
 - **User Registration**: New users can register via the registration form.
 - **Login & Logout**: Users can securely log in and manage their data.
-  ```
+  
+ ## Demo
   [Watch the video](./assets/Django CRM.mp4)
   [Watch the video](./assets/Site administration _ Django site admin.mp4.)
   
