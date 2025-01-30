@@ -73,7 +73,13 @@ dcrm/                # Root directory
 - **User Registration**: New users can register via the registration form.
 - **Login & Logout**: Users can securely log in and manage their data.
   
- ## Demo
-  [Watch the video](./assets/Django CRM.mp4)
-  [Watch the video](./assets/Site administration _ Django site admin.mp4.)
+ ##
+
+ ![Image](https://github.com/user-attachments/assets/7ae31668-da15-4d65-86fb-af0adda5f039)
+![Image](https://github.com/user-attachments/assets/a7fedd02-dbb0-4be1-af4a-f6632f271639)
+![Image](https://github.com/user-attachments/assets/6b9c64ef-9944-4c2a-825e-03822d1bfa62)
+![Image](https://github.com/user-attachments/assets/a45fc707-2b07-4f45-87e4-2c0b069e2753)
+![Image](https://github.com/user-attachments/assets/6d5f18b0-41a0-4256-b380-4151cd9318e5)
+![Image](https://github.com/user-attachments/assets/80050de9-407e-48ee-b7eb-976d605d29e1)
+  
   
